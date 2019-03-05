@@ -139,7 +139,9 @@ public class Parser {
 				}
 			}
 			
+			boolean hasSpace = false;
 			if (current_char == ' ') {
+				hasSpace = true;
 				while (char_index < length) {				
 					current_char = command_line_options.charAt(char_index);
 					if (current_char != ' ') {
@@ -153,7 +155,7 @@ public class Parser {
 				char_index++;
 				current_char = command_line_options.charAt(char_index);
 			}
-			if (current_char == '-' || char_index == length) {
+			if ((current_char == '-' || char_index == length) && hasSpace==true) {
 				if (getType(option_name) == BOOLEAN) {
 					option_value = "true";
 					if (isShortcut) {
@@ -204,3 +206,4 @@ public class Parser {
 	}
 
 }
+
